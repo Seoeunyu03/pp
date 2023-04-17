@@ -1,57 +1,57 @@
-ï»¿//#define DEBUG
+//#define DEBUG
 #include <iostream>
 #include <conio.h>
 #include <Windows.h>
 
-// game_state == 0 ì¼ë•Œ
+// game_state == 0 ÀÏ¶§
 int print_title_screen()
 {
     std::cout << "******************************************" << std::endl;
     std::cout << "*                                        *" << std::endl;
     std::cout << "*                                        *" << std::endl;
-    std::cout << "*              ì§€ë ì´ ê²Œì„               *" << std::endl;
+    std::cout << "*              Áö··ÀÌ °ÔÀÓ               *" << std::endl;
     std::cout << "*             (Snake  Bite)              *" << std::endl;
 
 #ifdef DEBUG
-    std::cout << "*            - ë””ë²„ê·¸ ëª¨ë“œ -             *" << std::endl;
+    std::cout << "*            - µğ¹ö±× ¸ğµå -             *" << std::endl;
 #else
     std::cout << "*                                        *" << std::endl;
 #endif  
-    std::cout << "*   1. ê²Œì„ ì‹œì‘                         *" << std::endl;
-    std::cout << "*   2. ê²Œì„ ì„¤ëª…                         *" << std::endl;
-    std::cout << "*   3. ê²Œì„ ë­í‚¹ ë³´ê¸°                    *" << std::endl;
-    std::cout << "*   4. ê²Œì„ ì¢…ë£Œ (esc)                   *" << std::endl;
+    std::cout << "*   1. °ÔÀÓ ½ÃÀÛ                         *" << std::endl;
+    std::cout << "*   2. °ÔÀÓ ¼³¸í                         *" << std::endl;
+    std::cout << "*   3. °ÔÀÓ ·©Å· º¸±â                    *" << std::endl;
+    std::cout << "*   4. °ÔÀÓ Á¾·á (esc)                   *" << std::endl;
     std::cout << "******************************************" << std::endl;
 
     return 0;
 }
 
 //void gotoxy(int x, int y) {
-//    //x, y ì¢Œí‘œ ì„¤ì •
+//    //x, y ÁÂÇ¥ ¼³Á¤
 //    COORD pos = { x,y };
-//    //ì»¤ì„œ ì´ë™
+//    //Ä¿¼­ ÀÌµ¿
 //    SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), pos);
 //}
 
 int print_game_screen(int stage_width, int stage_height)
 {
-    
 
-    for (int i = 0; i < stage_width; i++) {
+
+    for (int i = 0; i < stage_height; i++) {
         std::cout << "*";
     }
     std::cout << std::endl;
-    for (int i = 0; i < stage_height - 2; i++) {
+    for (int i = 0; i < stage_width - 2; i++) {
         std::cout << "*";
-        for (int j = 0; j < stage_width - 2; j++) {
-             std::cout << " ";
-            
+        for (int j = 0; j < stage_height - 2; j++) {
+            std::cout << " ";
+
         }
         std::cout << "*";
         std::cout << std::endl;
     }
 
-    for (int i = 0; i < stage_width; i++) {
+    for (int i = 0; i < stage_height; i++) {
         std::cout << "*";
     }
     std::cout << std::endl;
@@ -59,11 +59,11 @@ int print_game_screen(int stage_width, int stage_height)
     return 0;
 }
 
-// game_state == 2 ì¼ë•Œ
+// game_state == 2 ÀÏ¶§
 int print_introduction_screen()
 {
     std::cout << "******************************************" << std::endl;
-    std::cout << "íƒ€ì´í‹€í™”ë©´ìœ¼ë¡œ ëŒì•„ê°ˆê¹Œìš”? (Y/N)" << std::endl;
+    std::cout << "Å¸ÀÌÆ²È­¸éÀ¸·Î µ¹¾Æ°¥±î¿ä? (Y/N)" << std::endl;
     return 0;
 }
 
@@ -71,7 +71,8 @@ int main()
 {
     int x = 0;
     int y = 0;
-    
+
+
     int game_state = 0;
     int is_game_running = 1;
 
@@ -104,13 +105,12 @@ int main()
             }
             break;
         case 1:
-            std::cout << "ê°€ë¡œ ê¸¸ì´ë¥¼ ì…ë ¥í•˜ì„¸ìš” : ";
+            std::cout << "°¡·Î ±æÀÌ¸¦ ÀÔ·ÂÇÏ¼¼¿ä : ";
             std::cin >> x;
-            std::cout << "ì„¸ë¡œ ê¸¸ì´ë¥¼ ì…ë ¥í•˜ì„¸ìš” : ";
+            std::cout << "¼¼·Î ±æÀÌ¸¦ ÀÔ·ÂÇÏ¼¼¿ä : ";
             std::cin >> y;
             print_game_screen(x, y);
             key_input = _getch();
-            break;
         case 2:
             print_introduction_screen();
             key_input = _getch();
@@ -129,6 +129,7 @@ int main()
         default:
             break;
         }
+
 
     }
 
